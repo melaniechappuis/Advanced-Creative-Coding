@@ -1,11 +1,11 @@
-<!DOCTYPE HTML>
-<html>
-<head>
+      <!DOCTYPE HTML>
+      <html>
+      <head>
     <script 
     src="https://nexus-js.github.io/ui/dist/NexusUI.js">
     </script>
-</head>
-<body>
+    </head>
+    <body>
     <script language="javascript" type="text/javascript">
     var con = window.Nexus.context;
     var analyser = con.createAnalyser();
@@ -85,6 +85,6 @@
     setTimeout(function(){
         p5.instance = new p5();
     } , 0);
-  </script>
-</body>
-</html>
+     </script>
+     </body>
+     </html>
