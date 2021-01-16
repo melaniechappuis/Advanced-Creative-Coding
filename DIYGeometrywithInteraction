@@ -1,6 +1,6 @@
-        <html>
+<html>
 
-         <body>
+<body>
 	  <div
 		style="background:magenta; height:805px;"
 		onmousemove="con_amp.gain.value=5*(1**(event.clientX/180)) ;osc.frequency.value = 165 * (2 ** ((event.clientY-5)/50) );"
