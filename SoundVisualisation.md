@@ -1,32 +1,31 @@
- <html>
+     <html>
 
-<head>
-   <script src = "https://luuma.net/lib/maximilian.js"></script>
-</head>
+     <head>
+     <script src = "https://luuma.net/lib/maximilian.js"></script>
+     </head>
 
-<style>
+     <style>
 
-/*  
-    This is to make sure
-    the canvas is in the right position
-    on all browsers    
-*/
+ 
+ 
+ This is to make sure the canvas is in the right position on all browsers    
 
-canvas {
-position: absolute;
-top:0;
-left:0;
-}
+
+      canvas {
+      position: absolute;
+      top:0;
+      left:0;
+      }
   
-  body {
+      body {
     
-   background-color: #ffffff; 
+      background-color: #ffffff; 
     
-  }
+      }
 
-</style>
+     </style>
 
-<body>
+    <body>
     <canvas></canvas>
     <script>
     var maxi = maximilian();
@@ -74,52 +73,49 @@ left:0;
       
       var prob1 = 0.1;
       var prob2 = 3.5;
-  //var envOut = env1.adsr(1, env1.adsr.trigger);
-	var clock = new maxi.maxiClock();
+  var envOut = env1.adsr(1, env1.adsr.trigger);
+      
+      var clock = new maxi.maxiClock();
 	
-  clock.setTempo(tempo);
-  clock.setTicksPerBeat(1);
+     clock.setTempo(tempo);
+     clock.setTicksPerBeat(1);
 	
       var drawInterval = 100;
                   
-var fov = 300;
+     var fov = 300;
 
-var canvas = document.querySelector("canvas");
-var width = window.innerWidth*1.2;
-var height = window.innerHeight*1.2;
-var context = canvas.getContext("2d");
-canvas.setAttribute("width", width);
-canvas.setAttribute("height", height);
-canvas.addEventListener('mousemove',getMouse,false);
-var mouseX=3;
-var mouseY=3;
-var barCounter =0;
-var point = [];
-var points = [];
-var point3d = [];
+     var canvas = document.querySelector("canvas");
+     var width = window.innerWidth*1.2;
+     var height = window.innerHeight*1.2;
+     var context = canvas.getContext("2d");
+     canvas.setAttribute("width", width);
+     canvas.setAttribute("height", height);
+     canvas.addEventListener('mousemove',getMouse,false);
+     var mouseX=3;
+     var mouseY=3;
+     var barCounter =0;
+     var point = [];
+     var points = [];
+     var point3d = [];
 
-var angleX = 0;
-var angleY = 0;
-var HALF_WIDTH = width / 2;
-var HALF_HEIGHT = height / 2;
+     var angleX = 0;
+     var angleY = 0;
+     var HALF_WIDTH = width / 2;
+     var HALF_HEIGHT = height / 2;
 
-var x3d = 0;
-var y3d = 0;
-var z3d = 0;
+    var x3d = 0;
+    var y3d = 0;
+    var z3d = 0;
 
-var counter=0;
-var counterAudio = 0;
-var lastx2d = 0;
-var lasty2d = 0;
-var dim = 50; 
-var spacing = ((Math.PI * 10) / dim);
-var numPoints = dim * dim;
-var size = 80;
-
-      
-      
-      
-      
+    var counter=0;
+    var counterAudio = 0;
+    var lastx2d = 0;
+    var lasty2d = 0;
+    var dim = 50; 
+    var spacing = ((Math.PI * 10) / dim);
+    var numPoints = dim * dim;
+    var size = 80;
+ 
        function playAudio() {
 	
   	 maxiEngine.loadSample("kick.wav", kick);
@@ -128,17 +124,13 @@ var size = 80;
      maxiEngine.loadSample("clap", clap); 
      maxiEngine.loadSample("leap.wav", sample2);
      maxiEngine.loadSample("sample.wav", sample3);
-     
-	 
-
+    
 		  maxiEngine.play = function() {
 		  var wave = 100;
             
           counterAudio++;
       	  clock.ticker();
-            
-   
-          
+                  
       if (clock.isTick() ) 
       {
         let beatCounter = clock.playHead % 3;
@@ -157,8 +149,9 @@ var size = 80;
         
              console.log(barCounter);
         
-        //kick trigger
-          if (Math.random() > prob2 && [0, 3, 5, 9].indexOf(beatCounter)&7 != 0) 
+  kick trigger
+         
+	 if (Math.random() > prob2 && [0, 3, 5, 9].indexOf(beatCounter)&7 != 0) 
           {
             
             kick.trigger();
@@ -169,8 +162,9 @@ var size = 80;
             prob1 = 0.1;
           }
         
-        //kick2 (aka snare) trigger
-         if (Math.random() > 0.75 && beatCounter  > 7) 
+   kick2 (aka snare) trigger
+         
+	 if (Math.random() > 0.75 && beatCounter  > 7) 
           {
           
           	snare.trigger();	
@@ -193,8 +187,9 @@ var size = 80;
               kick2.trigger();
               musicY = Math.sin(musicX);
               colour = "rgba(250,30,220)";
-                //let hihatSpeed = ((clock.playHead % 11 / 7) + 0.5) * -1;
-              prob1 = 0.7;
+  let hihatSpeed = ((clock.playHead % 11 / 7) + 0.5) * -1;
+              
+	      prob1 = 0.7;
 
          	}
          if (Math.random() > 0.8  && [5, 7, 11].indexOf(beatCounter)%13 != 0)
@@ -243,8 +238,9 @@ var size = 80;
               }
           }
         
-        //hi hat 1 and sample 2
-        if (Math.random() > 0.5 && [3,4,5,7, 9].indexOf(beatCounter)&11 >= 0) {
+  hi hat 1 and sample 2
+        
+	if (Math.random() > 0.5 && [3,4,5,7, 9].indexOf(beatCounter)&11 >= 0) {
                 hihat1.trigger();
           if (Math.random() > prob1) 
           {
@@ -259,8 +255,9 @@ var size = 80;
                
        }
 
-        //hithat 2
-        if (beatCounter % 5 == 2 && Math.random() > prob1)
+  hithat 2
+        
+	if (beatCounter % 5 == 2 && Math.random() > prob1)
         {
           hihat2.trigger();
           colour = "rgba(255,255,0)";
@@ -291,7 +288,8 @@ var size = 80;
             kickSpeed =  Math.random(); 
             
       let snareSpeed = 0.3*clock.playHead%3;
-          //Math.sin((clock.playHead % 17) * (Math.random() * 0.2)  + 0.5, Math.random() * 3 )% Math.max((clock.playHead % 19) * (Math.random() * 0.05)  + 0.5, Math.random() * 3 ); 
+   Math.sin((clock.playHead % 17) * (Math.random() * 0.2)  + 0.5, Math.random() * 3 )% Math.max((clock.playHead % 19) * (Math.random() * 0.05)  + 0.5, Math.random() * 3 ); 
+      
       let sample2Speed =  Math.sign((clock.playHead % 1 / 5) * myOsc.sinewave(1 * myOsc.coswave(0.3)) + 0.5) * Math.random(); 
       let sample3Speed = (clock.playHead % 1); 
       let sample2Amp =  myOsc.sinewave(0.3 * clock.playHead ) * 1.2; 
@@ -306,10 +304,12 @@ var size = 80;
             
       var wave2 = filter.hires(sample2.playOnce(sample2Speed*(mouseY/100)) * sample2Amp, filter1Cutoff , 3) + filter2.lores(kick2.playOnce(1),  filter2Cutoff , 3);
             
-      //w += sample2.playOnce(sample2Speed) * sample2Amp;
+   w += sample2.playOnce(sample2Speed) * sample2Amp;
+      
       var wave3 = snare.playOnce(snareSpeed/2) + clap.playOnce(clapSpeed) * clapAmp;
             
-      var wave4 = sample3.playOnce(sample3Speed) * 2;// + sample4.playOnce(0.7);
+      var wave4 = sample3.playOnce(sample3Speed) * 2;
+  + sample4.playOnce(0.7);
             
       let hihatAmp = clock.playHead % 2 ? 0.3 : 1;
       var wave5 = hihat.playOnce(hihatSpeed) * hihatAmp + hihat1.playOnce(hihatSpeed);
@@ -321,47 +321,48 @@ var size = 80;
             drawOutput2[counterAudio % 1023] = wave1*(mouseX/100);
             drawOutput3[counterAudio % 1023] = wave3;
             drawOutput4[counterAudio % 1023] = wave4;
-            drawOutput5[counterAudio % 1023] = (wave1 * wave2 * wave3 * wave4 * wave5);// /(5*Math.sin(mouseX)
+            drawOutput5[counterAudio % 1023] = (wave1 * wave2 * wave3 * wave4 * wave5);
+	  (5*Math.sin(mouseX)
             
             return wave;
           }
-	}
+	      }
     
+            playAudio();    
       
-      
-  playAudio();    
-      
-      
-function draw() {
+           function draw() {
 
-counter=0.01; 
+          counter=0.01; 
 
-var points = [];
+        var points = [];
 
-    for (var i = 0; i < numPoints; i++) {
-	var q = i % 1024;
-     var z = size * Math.sin(spacing * i); 
+         for (var i = 0; i < numPoints; i++) {
+	    var q = i % 1024;
+        var z = size * Math.sin(spacing * i); 
   
-     var s = size * Math.cos(spacing * i);
+        var s = size * Math.cos(spacing * i);
      
-      if (drawOutput1[q] > drawOutput2[q])
-      {
+         if (drawOutput1[q] > drawOutput2[q])
+         {
         if(Math.random > prob1){
           point = [i*size/dim,j*size/dim*drawOutput5[q], Math.sin((wave2 * mouseY * drawOutput4[q]) + (wave * mouseX * drawOutput3[q]))* 10.0];
         }
         
         
         else {   point = [Math.tan(spacing * i + drawOutput2[q]) * Math.sin(spacing * i * (counter/4) + drawOutput3[q]) * s,Math.sin(spacing * i * musicY) * Math.sin(spacing * i * counter) * s ,z + drawOutput2[q]];
-//point = [Math.cos(spacing * i * musicY- (Math.sin(drawOutput1[q]- drawOutput1[q-7] ))) * Math.sin(spacing * i + drawOutput2[q]) * s,Math.sin(spacing * musicX * i + Math.sin(drawOutput1[q] / drawOutput2[q])) * Math.sin(spacing * i * counter - drawOutput5[q]) * s,z];
-        }
-    }
+
+point = [Math.cos(spacing * i * musicY- (Math.sin(drawOutput1[q]- drawOutput1[q-7] ))) * Math.sin(spacing * i + drawOutput2[q]) * s,Math.sin(spacing * musicX * i + Math.sin(drawOutput1[q] / drawOutput2[q])) * Math.sin(spacing * i * counter - drawOutput5[q]) * s,z];
+                  
+		  }
+             }
   
       else if (draw2){
          point = [Math.cos(spacing * (i * Math.sin(z))+ drawOutput2[q]) * Math.sin(spacing * i * counter + drawOutput5[q]) * s,Math.sin(spacing * i * musicY) * Math.sin(spacing * i * (counter/2)) * s,z];
-        //point = [Math.tan(spacing * i * musicY- (Math.cos(drawOutput3[q]- drawOutput5[q-7] ))) * Math.abs(spacing * i + drawOutput2[q]) * s *drawOutput3[q*drawOutput5[q-barCounter*7]],Math.sin(spacing * musicX * barCounter*(mouseY/100) + Math.cos(drawOutput4[q] % drawOutput3[q])) * Math.sin(spacing * i * counter - drawOutput5[q]) * s,z];
-      }
-      else if (draw1)
-      {
+   point = [Math.tan(spacing * i * musicY- (Math.cos(drawOutput3[q]- drawOutput5[q-7] ))) * Math.abs(spacing * i + drawOutput2[q]) * s *drawOutput3[q*drawOutput5[q-barCounter*7]],Math.sin(spacing * musicX * barCounter*(mouseY/100) + Math.cos(drawOutput4[q] % drawOutput3[q])) * Math.sin(spacing * i * counter - drawOutput5[q]) * s,z];
+        
+	}
+       else if (draw1)
+       {
             
          point = [Math.cos(spacing * i * musicX) * Math.sin(spacing * i * counter) * s,Math.sin(spacing * i * musicY) * Math.sin(spacing * i * counter) * s,z];
             }
@@ -372,11 +373,11 @@ var points = [];
                point = [Math.tan(spacing * i * musicX) * Math.cos(spacing * i * counter) * s,Math.sin(spacing * i * musicY) * Math.sin(spacing * i * counter) * (s*Math.cos(z)) ,z];
       }
       
-      /*
-     else if (draw3){
+     
+ else if (draw3){
      point = [Math.cos(spacing * i * musicX) * Math.sin(spacing * i * counter) * s,Math.sin(spacing * i * musicY) * Math.sin(spacing / i * counter) * (s*Math.cos(z*drawOutput[counter%1024])) ,z];
       }
-      */
+     
       else {
         point = [Math.cos(spacing * i * musicX- (Math.sin(drawOutput1[q]* drawOutput1[q] ))) * Math.cos(spacing * i + drawOutput2[q]) * s,Math.sin(spacing * (barCounter%13) * i + Math.tan(drawOutput1[q] / drawOutput2[q])) * Math.sin(spacing * i * counter - drawOutput5[q]) * s + mouseX,z-musicY];
         
@@ -393,46 +394,50 @@ var points = [];
     angleX+=((musicX/width)-0.5)/(barCounter%23+1);
     angleY+=((musicY/height)-0.5)/(barCounter%13+2);
 
-// Here we run through each point and work out where it should be drawn
+Here we run through each point and work out where it should be drawn
 
     for (var i = 0; i < numPoints; i++) {
         point3d = points[i];
         z3d = point3d[2];
         
 
-// Check if the points are too close
-//        if (z3d < -fov) z3d += HALF_WIDTH;
+Check if the points are too close
+      if (z3d < -fov) z3d += HALF_WIDTH;
         
         point3d[2] = z3d;
  
- // Calculate the rotation using our own functions
+ Calculate the rotation using our own functions
+    
     rotateX(point3d,angleX);
     rotateY(point3d,angleY);
  
- // Get the point in position 
-        x3d = point3d[0];
+  Get the point in position 
+       
+       x3d = point3d[0];
         y3d = point3d[1];
         z3d = point3d[2];
-// Convert the Z value to a scale factor
-// This will give the appearance of depth
-        var scale = fov / (fov + z3d);
+Convert the Z value to a scale factor
+This will give the appearance of depth
+        
+	var scale = fov / (fov + z3d);
 
-// Store the X value with the scaling
-// FOV is taken into account
+Store the X value with the scaling
+FOV is taken into account
 
         var x2d = (x3d * scale) + HALF_WIDTH;
 
-// Store the Y value with the scaling
-// FOV is taken into account
+Store the Y value with the scaling
+FOV is taken into account
 
         var y2d = (y3d * scale) + HALF_HEIGHT;
 
-// Draw the point
+Draw the point
 
-// Set the size based on scaling
-        if (scale>20) scale =20;
+Set the size based on scaling
+        
+	if (scale>20) scale =20;
       
-      if (draw1){
+        if (draw1){
         context.lineWidth = scale+ drawOutput5[Math.floor(Math.random()*(barCounter^musicX))] ;
         context.strokeStyle = colour;
         context.beginPath();
@@ -460,14 +465,14 @@ var points = [];
         lasty2d=y2d;
     }
 
-}
+     }
 
-setInterval(draw, drawInterval);
+     setInterval(draw, drawInterval);
       
 
-// Our own rotate functions
+Our own rotate functions
 
-function rotateX(point3d,angleX) {
+        function rotateX(point3d,angleX) {
         var	x = point3d[0]; 
         var	z = point3d[2]; 
 	
@@ -483,9 +488,9 @@ function rotateX(point3d,angleX) {
         point3d[0] = x;
         point3d[2] = z;
           
-}
+      }
 
-function rotateY(point3d,angleY) {
+      function rotateY(point3d,angleY) {
         var y = point3d[1];
         var	z = point3d[2]; 
 	
@@ -501,30 +506,34 @@ function rotateY(point3d,angleY) {
         point3d[1] = y;
         point3d[2] = z;
           
-} 
+      } 
 
-//here's our function 'getMouse'.
-function getMouse (mousePosition) {
-//for other browsers..
-  if (mousePosition.layerX || mousePosition.layerX === 0) { // Firefox?
+here's our function 'getMouse'.
+
+      function getMouse (mousePosition) {
+for other browsers..
+  
+     if (mousePosition.layerX || mousePosition.layerX === 0) { 
+   Firefox?
+   
     mouseX = mousePosition.layerX;
     mouseY = mousePosition.layerY;
-  } else if (mousePosition.offsetX || mousePosition.offsetX === 0) { // Opera?
+     } else if (mousePosition.offsetX || mousePosition.offsetX === 0) { // Opera?
     mouseX = mousePosition.offsetX;
     mouseY = mousePosition.offsetY;
-  }
-}
+     }
+     }
 
-var lastOut=0;
+     var lastOut=0;
 
-function lowPassFilter(input,coeff){
+     function lowPassFilter(input,coeff){
     var output = lastOut+coeff*(input-lastOut);
     lastOut=output;
     return output;
-}
+     }
    
-</script>
+     </script>
 
-</body>
+     </body>
 
-</html>
+     </html>
